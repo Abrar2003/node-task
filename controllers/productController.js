@@ -25,7 +25,7 @@ exports.getAll = async (req, res) => {
 // Get Product by ID
 exports.getById = async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id).populate('reviews');
+    const product = await Product.findById(req.params.id);
     if (!product) {
       return res.status(404).json({ error: 'Product not found.' });
     }
@@ -84,7 +84,8 @@ exports.addReview = async (req, res) => {
 // Get Reviews for a Product
 exports.getReviews = async (req, res) => {
   try {
-    const product = await Product.findById(req.params.productId).populate('reviews');
+    const product = await Product.findById(req.params.productId)
+    ;
     if (!product) {
       return res.status(404).json({ error: 'Product not found.' });
     }
